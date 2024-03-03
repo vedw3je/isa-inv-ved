@@ -1,0 +1,42 @@
+{% extends 'home/base.html' %}
+{% block title %}Home - ISA Inventory{% endblock %}
+{% block content %}
+<body>
+
+<section class="hero">
+    <h1>Welcome to ISA VESIT Inventory</h1>
+    <p>Your one-stop destination for quality electronic components.</p>
+    <a href="#">Explore Now</a>
+</section>
+
+
+<section class="featured-components">
+    <h2>Featured Components</h2>
+</section>
+
+
+<section class="popular-categories">
+    <h2>Popular Categories</h2>
+    <a href="{% url 'home' %}">All</a>
+    <a href="{% url 'getDevelopmentBoard' %}">Development Boards</a>
+    <a href="{% url 'getSM' %}">Sensor Modules</a>
+    <a href="{% url 'getEC' %}">Electronic Components</a>
+    <a href="{% url 'getMotor' %}">Motors</a>
+</section>
+<div class="row">
+    {% for component in components %}
+    <hr>
+    <div class="col-lg-4">
+    <img class="thumbnail" src="/static/images/{{component.image}}" style="width: 100px; height: 100px;">
+    <div class="box-element product">
+    <h3><strong>{{component.name}}</strong></h3>
+    <button data-product="{{component.id}}" data-action="add" class="btn
+    btn-outline-secondary add-btn update-cart">Add to Cart</button>
+    <a href="/component/{{component.id}}">View</a>
+    <hr>
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+</body>
+{% endblock %}
